@@ -13,7 +13,7 @@ body {
 #tic-tac-toe-board {
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
+  margin-top: 5px;
 }
 .row {
   display: flex;
@@ -23,16 +23,19 @@ body {
 
 .cell {
   background-color: #fff;
-  border: 2px solid #333;
+  /* border: 2px solid #333; */
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.35) 5px 5px 15px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
+  font-size: 3rem;
+  font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
   width: 100px;
   height: 100px;
-  margin: 1px;
+  margin: 2px;
 }
 
 .cell:hover {
@@ -58,6 +61,25 @@ body {
   color: #333;
 }
 
+.turn-indicator {
+  margin-top: 20px;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.turn-indicator-message {
+  margin: 0;
+  padding: 10px 15px;
+  background-color: rgb(45, 55, 166);
+  color: #fff;
+  font-weight: bold;
+  /* border: 2px solid #333; */
+  border-radius: 10px;
+}
+
 #resetButton {
   padding: 10px 20px;
   margin-top: 20px;
@@ -77,12 +99,24 @@ body {
 
 .winning-cell {
   background-color: green;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .cell-x {
-  color: blue; /* Change this to the color you want for X */
+  color: indigo; /* Change this to the color you want for X */
 }
 
 .cell-o {
-  color: red; /* Change this to the color you want for O */
+  color: mediumseagreen; /* Change this to the color you want for O */
 }

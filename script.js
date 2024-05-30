@@ -9,6 +9,7 @@ function handlePlayerTurn(clickedCellIndex) {
   board[clickedCellIndex] = currentPlayer;
   checkWinnerorDraw();
   currentPlayer = currentPlayer === "X" ? "O" : "X";
+  updateTurnIndicator(); // Update the turn indicator after changing the player
 }
 
 const cells = document.querySelectorAll(".cell");
@@ -42,6 +43,13 @@ function updateBoard() {
       cells[i].classList.remove("cell-x", "cell-o");
     }
   }
+}
+
+function updateTurnIndicator() {
+  const turnIndicatorMessage = document.getElementById("turnIndicatorMessage");
+  turnIndicatorMessage.innerText = `${currentPlayer}'s Turn`;
+  turnIndicatorMessage.style.backgroundColor =
+    currentPlayer === "X" ? "indigo" : "mediumseagreen";
 }
 
 const winningConditions = [
@@ -95,8 +103,8 @@ function announceWinner(player) {
 }
 
 function announceDraw() {
-  const messageElemnet = document.getElementById("gameMessage");
-  messageElemnet.innerText = "It's a draw!";
+  const messageElement = document.getElementById("gameMessage");
+  messageElement.innerText = "It's a draw!";
 }
 
 function resetGame() {
@@ -108,7 +116,11 @@ function resetGame() {
     cell.classList.remove("winning-cell"); // Remove the winning-cell class
   });
   document.getElementById("gameMessage").innerText = "";
+  updateTurnIndicator(); // Reset the turn indicator to the initial state
 }
 
 const resetButton = document.getElementById("resetButton");
 resetButton.addEventListener("click", resetGame, false);
+
+// Initial call to set the turn indicator at the start of the game
+updateTurnIndicator();
